@@ -1,0 +1,31 @@
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import Button from 'App/Client/Common/Components/Button';
+import GoogleLoginButton from 'App/Client/Features/Landing/GoogleLoginButton';
+
+storiesOf('Button', module)
+    .add('bordered with plain text', () => (
+        <Button fill="border">Hi I'm Bordered Button</Button>
+    ))
+    .add('bordered size = large', () => (
+        <Button fill="border" size="large">Hi I'm Bordered Button</Button>
+    ))
+    .add('bordered with on click', () => (
+        <Button fill="border" onClick={() => alert('do something here')}>
+            Click Me!
+        </Button>
+    ))
+    .add('google login', () => (
+        <GoogleLoginButton size="large" />
+    ), {
+        info: {
+            text: "Try resizing the container, this button's width is 30% of the parent"
+        }
+    })
+    .add('primary button', () => (
+        <Button fill="background" size="large" >Primary Filled Button</Button>
+    ))
+    .add('default fill', () => (
+        <Button size="large" >Button's Fill Defaults to "background"</Button>
+    ))
+;

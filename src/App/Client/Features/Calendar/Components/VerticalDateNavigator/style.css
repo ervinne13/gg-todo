@@ -1,0 +1,28 @@
+.vertical-date-navigator > li {
+    /* Overlapping borders  */
+    border-top: 1px #7E7E7E solid;
+    border-bottom: 1px #7E7E7E solid;
+    margin-bottom: -1px;
+}
+
+.vertical-date-navigator {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navigation-button {
+    border: none;
+    background: inherit;
+    width: 100%;
+}
+
+.navigation-button:active, 
+.navigation-button:focus {
+    border: none;
+    outline: none;
+}
+
+.navigation-button:active {
+    background: rgb(238, 236, 236);    
+}

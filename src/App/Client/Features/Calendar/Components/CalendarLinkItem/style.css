@@ -1,0 +1,50 @@
+
+.calendar-link-item {
+    padding-top: 14px;
+    padding-bottom: 14px;
+
+    padding-left: 36px;
+    padding-right: 22px;
+
+    overflow: auto;
+    color: black;
+    cursor: pointer;
+}
+
+.calendar-link-item-content {
+    display: inline-block;
+}
+
+.calendar-link-item-content > .day-of-week {
+    display: block;
+    font-size: 22px;
+    font-weight: semibold;
+}
+
+.calendar-link-item-content > .task {
+    display: block;
+    font-size: 16px;
+}
+
+.calendar-link-item-content > .task.-info {
+    color: #2394F2
+}
+
+.calendar-link-item-content > .task.-primary {
+    color: #F28123
+}
+
+.calendar-link-item > .day-of-month {
+    float: right;
+    font-size: 42px;
+    font-weight: bold;
+
+    color: #8D8D8D;
+}
+
+.calendar-link-item.-is-active,
+.calendar-link-item.-is-active .day-of-month, 
+.calendar-link-item.-is-active .task {
+    background-color: #019fe9;
+    color: white;
+}

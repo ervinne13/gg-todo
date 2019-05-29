@@ -1,0 +1,40 @@
+
+button.gg-button.-size-regular {
+    border-radius: 6px;
+    padding: 8px;
+}
+
+button.gg-button.-size-large {
+    border-radius: 4px;
+    font-weight: bold;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-left: 20px;
+    padding-right: 20px;
+    outline: none;
+}
+
+button.gg-button:focus, button.gg-button:active{
+    outline: none;
+}
+
+button.gg-button.-color-main:active {
+    color: white;
+    background: #DF6E11;
+    border: 2px solid #DF6E11;
+}
+
+button.fill-border.-color-main {
+    border: 2px solid #F28123;    
+    background: white;    
+}
+
+button.fill-background.-color-main {    
+    color: white;
+    border: 2px solid #F28123;
+    background: #F28123;
+
+    -webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
