@@ -1,0 +1,7 @@
+
+ul.task-list li {
+    list-style: none;
+    border-bottom: 1px solid #7E7E7E;
+    border-top: 1px solid #7E7E7E;
+    margin-bottom: -1px;
+}

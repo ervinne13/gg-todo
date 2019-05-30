@@ -1,0 +1,51 @@
+.lite-modal-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    background: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    
+    display: none;
+    justify-content: center;
+    padding-top: 5%;
+}
+
+.lite-modal-bg.-active {
+    display: flex;
+    z-index: 9999;
+}
+
+.lite-modal-content {
+    background: #fff;
+    max-width: 685px;
+    width: 100%;
+    height: fit-content;
+    min-height: 100px;
+    position: relative;
+    padding: 0;
+}
+
+.lite-modal-exit {
+    color: #444;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    padding: 0;    
+    outline: none;
+    background: transparent;
+    border: none;
+}
+
+.lite-modal-exit:hover {
+    background: #adadad;    
+}
+
+.lite-modal-btn-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 30px;
+    width: 30px;
+}

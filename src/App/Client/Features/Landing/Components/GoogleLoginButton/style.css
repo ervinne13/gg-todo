@@ -1,11 +1,11 @@
 
-.google-auth-button svg {
+.google-auth-btn svg {
     vertical-align: middle;
     margin-left: 10px;
     height: 16px;
     width: 16px;    
 }
 
-.google-auth-button {    
+.google-auth-btn {    
     min-width: 30%;    
 }

@@ -1,0 +1,11 @@
+
+.task {
+    display: flex;
+    overflow: auto;
+    align-items: center;
+    justify-content: space-between
+}
+
+.task.-done > .task-text {
+    text-decoration: line-through;
+}

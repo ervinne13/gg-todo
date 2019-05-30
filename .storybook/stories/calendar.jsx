@@ -4,7 +4,7 @@ import CalendarLinkItem from 'App/Client/Features/Calendar/Components/CalendarLi
 import VerticalDateNavigator from 'App/Client/Features/Calendar/Components/VerticalDateNavigator';
 
 storiesOf('Calendar Link Item', module)
-    .addDecorator(storyFn => <div style={{ width: '400px', border: '1px solid black' }} children={storyFn()} />)
+    .addDecorator(storyFn => <div style={{ width: '400px', borderTop: '1px #7E7E7E solid', borderBottom: '1px #7E7E7E solid'  }} children={storyFn()} />)
     .add('using date object & all tasks done', () => (
         <CalendarLinkItem
             taskMessage="All Tasks Done"

@@ -5,9 +5,6 @@ import Caret from 'App/Client/Common/Icons/Caret';
 
 import optionalLooseDate from 'App/Client/Common/PropTypes/optionalLooseDate';
 
-/**
- *  @prop selectedDate     (Optional) The date that should be highlighted
- */
 class VerticalDateNavigatorComponent extends React.Component {
     state = {
         displayDateSet: [],
@@ -86,7 +83,7 @@ class VerticalDateNavigatorComponent extends React.Component {
 }
 
 const Navigator = ({ direction, onClick }) => (
-    <button className="navigation-button" onClick={onClick} >
+    <button className="navigation-btn" onClick={onClick} >
         <Caret direction={direction} />
     </button>
 );

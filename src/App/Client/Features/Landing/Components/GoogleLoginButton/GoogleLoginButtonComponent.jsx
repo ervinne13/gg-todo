@@ -4,7 +4,7 @@ import { ReactComponent as Logo } from './google-icon.svg';
 import './style.css';
 
 const GoogleLoginButton = () => (
-    <Button fill="border" size="large" className="google-auth-button" onClick={() => handleGoogleAuthentication()}>
+    <Button fill="border" size="large" className="google-auth-btn" onClick={() => handleGoogleAuthentication()}>
         Sign In with Google <Logo />
     </Button>
 );

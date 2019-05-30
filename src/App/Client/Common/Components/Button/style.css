@@ -1,10 +1,14 @@
 
-button.gg-button.-size-regular {
+button.round-corner-btn {
+    cursor: pointer;
+}
+
+button.round-corner-btn.-size-regular {
     border-radius: 6px;
     padding: 8px;
 }
 
-button.gg-button.-size-large {
+button.round-corner-btn.-size-large {
     border-radius: 4px;
     font-weight: bold;
     padding-top: 14px;
@@ -14,11 +18,11 @@ button.gg-button.-size-large {
     outline: none;
 }
 
-button.gg-button:focus, button.gg-button:active{
+button.round-corner-btn:focus, button.round-corner-btn:active{
     outline: none;
 }
 
-button.gg-button.-color-main:active {
+button.round-corner-btn.-color-main:active {
     color: white;
     background: #DF6E11;
     border: 2px solid #DF6E11;

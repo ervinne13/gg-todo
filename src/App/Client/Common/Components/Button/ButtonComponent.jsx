@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './style.css';
 
 const Button = ({ children, fill, size, className, ...props }) => (
-    <button className={`gg-button fill-${fill} -color-main -size-${size} ${className}`} {...props}>
+    <button className={`round-corner-btn fill-${fill} -color-main -size-${size} ${className}`} {...props}>
         {children}
     </button>
 );

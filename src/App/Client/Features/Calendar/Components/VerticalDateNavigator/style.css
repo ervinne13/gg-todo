@@ -11,18 +11,18 @@
     margin: 0;
 }
 
-.navigation-button {
+.navigation-btn {
     border: none;
     background: inherit;
     width: 100%;
 }
 
-.navigation-button:active, 
-.navigation-button:focus {
+.navigation-btn:active, 
+.navigation-btn:focus {
     border: none;
     outline: none;
 }
 
-.navigation-button:active {
+.navigation-btn:active {
     background: rgb(238, 236, 236);    
 }

@@ -1,0 +1,20 @@
+
+.confirm-deletion-prompt {    
+    text-align: center;
+    color: #707070;
+}
+
+.confirm-deletion-prompt .message {
+    margin-top: 60px;
+    margin-bottom: 40px;
+    margin-left: 20px;
+    margin-right: aut20pxo;
+}
+
+.confirm-deletion-prompt .actions {
+    display: flex;    
+}
+
+.confirm-deletion-prompt .actions button {
+    width: 50%;
+}
