@@ -1,0 +1,14 @@
+
+.task-list-header {
+    overflow: auto;
+    color: #707070;
+}
+
+.task-list-header button {
+    float: right;
+    margin-top: 20px;
+}
+
+.task-list-header h1 {
+    float: left;
+}
