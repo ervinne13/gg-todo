@@ -5,14 +5,15 @@ import TaskForm from 'App/Client/Features/Tasks/Forms/Task';
 
 class TaskFormPerDateScene extends React.Component {
     render() {
+        const date = this.props.match.params.date;
         return (
             <Grid>
                 <Row>
                     <Col sm={12} md={4}>
-                        <VerticalDateNavigator selectedDate={new Date()} />
+                        <VerticalDateNavigator selectedDate={date} />
                     </Col>
                     <Col sm={12} md={8}>                        
-                        <TaskForm />
+                        <TaskForm date={ date }/>
                     </Col>
                 </Row>
             </Grid>

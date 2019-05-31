@@ -72,9 +72,11 @@ class VerticalDateNavigatorComponent extends React.Component {
                 <ul className="vertical-date-navigator">
                     {displayDateSet && displayDateSet.map(date => 
                         <CalendarLinkItemListItem 
+                            key={date}
                             selectedDate={selectedDate} 
                             date={date} 
-                            tasksSummary={tasksSummary} />)}
+                            tasksSummary={tasksSummary} />
+                    )}
                 </ul>
                 <Navigator direction="down" onClick={() => this.navigate("down")} />
             </Fragment>
@@ -94,7 +96,7 @@ const CalendarLinkItemListItem = ({ selectedDate, date, tasksSummary }) => {
     if (taskSummary) {
         const {taskMessage, taskHighlight} = makeTaskSummaryDisplayable(taskSummary);
         return (
-            <li key={date.toString()} onClick={() => this.triggerOnDateClicked(date)} >
+            <li key={date.toString()} >
                 <CalendarLinkItem
                     date={date}
                     taskMessage={taskMessage}
@@ -105,7 +107,7 @@ const CalendarLinkItemListItem = ({ selectedDate, date, tasksSummary }) => {
         );
     } else {
         return (
-            <li key={date.toString()} onClick={() => this.triggerOnDateClicked(date)} >
+            <li key={date.toString()} >
                 <CalendarLinkItem
                     date={date}
                     isActive={testDateMatch(selectedDate, date)}

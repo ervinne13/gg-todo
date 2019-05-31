@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'App/Client/Common/Components/Button';
+import { Redirect } from 'react-router-dom';
 import './style.css'
 
 class TaskForm extends React.Component {
@@ -9,6 +10,7 @@ class TaskForm extends React.Component {
 
         const task = props.task ? props.task : { text: '', status: 'open' };
         this.state = {
+            taskSubmitted: false,            
             task,
             errorMessage: '',
             headerText: this.resolveHeaderText(task),
@@ -47,8 +49,12 @@ class TaskForm extends React.Component {
         }
 
         if (this.props.onSaveTask) {
-            this.props.onSaveTask(this.state.task);
+            const { date } = this.props;
+            const task = { ...this.state.task, date };            
+            this.props.onSaveTask(task);
         }
+
+        this.setState({ taskSubmitted: true });
     }
 
     /**
@@ -66,6 +72,11 @@ class TaskForm extends React.Component {
     }
 
     render() {
+        if (this.state.taskSubmitted) {
+            const { date } = this.props;
+            return <Redirect to={ `/tasks/${date}` } />
+        }
+
         const { headerText, submitActionText, errorMessage } = this.state;
         return (
             <form className="task-form" onSubmit={this.triggerSaveTask}>
@@ -83,7 +94,7 @@ class TaskForm extends React.Component {
                 <div className="task-text-error-wrapper">
                     <label
                         className="error-text"
-                        for="task-text-input">
+                        htmlFor="task-text-input">
                         {errorMessage}
                     </label>
                 </div>

@@ -1,13 +1,13 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Modal from 'App/Client/Common/Components/Modal';
-import Task from 'App/Client/Features/Tasks/Components/Task';
-import TaskList from 'App/Client/Features/Tasks/Components/TaskList';
-import TaskForm from 'App/Client/Features/Tasks/Forms/Task';
-import ConfirmDeletion from 'App/Client/Features/Tasks/Components/ConfirmDeletion';
+import Task from 'App/Client/Features/Tasks/Components/Task/TaskComponent';
+import TaskList from 'App/Client/Features/Tasks/Components/TaskList/TaskListComponent';
+import TaskForm from 'App/Client/Features/Tasks/Forms/Task/TaskForm';
+import ConfirmDeletion from 'App/Client/Features/Tasks/Components/ConfirmDeletion/ConfirmDeletionComponent';
 
 storiesOf('Tasks', module)
-    .addDecorator(storyFn => <div style={{ width: '600px', borderBottom: '1px solid #7E7E7E', borderTop: '1px solid #7E7E7E', margin: 'auto' }} children={storyFn()} />)
+    .addDecorator(story => <div style={{ width: '600px', borderBottom: '1px solid #7E7E7E', borderTop: '1px solid #7E7E7E', margin: 'auto' }} children={story()} />)
     .add('default/open task', () => (
         <Task task={{ text: 'Dentist appointment @ 2PM', status: 'open' }} />
     ))
@@ -38,7 +38,7 @@ const demoTasks = [
 ];
 
 storiesOf('Confirm Deletion', module)
-    .addDecorator(storyFn => <div style={{ width: '600px', margin: 'auto' }} children={storyFn()} />)
+    .addDecorator(story => <div style={{ width: '600px', margin: 'auto' }} children={story()} />)
     .add('without modal', () => (
         <ConfirmDeletion />
     ))
@@ -50,10 +50,18 @@ storiesOf('Confirm Deletion', module)
             />
         </Modal>
     ))
+    .add('inside modal without default close', () => (
+        <Modal isOpen={true} hideDefaultCloseButton={true}>
+            <ConfirmDeletion
+                onConfirm={() => console.log('confirmed deletion')}
+                onCancel={() => console.log('canceled deletion')}
+            />
+        </Modal>
+    ))
     ;
 
 storiesOf('Task Form', module)
-    .addDecorator(storyFn => <div style={{ width: '600px', marginLeft: '30px' }} children={storyFn()} />)
+    .addDecorator(story => <div style={{ width: '600px', marginLeft: '30px' }} children={story()} />)        
     .add('new task', () => (
         <TaskForm />
     ))

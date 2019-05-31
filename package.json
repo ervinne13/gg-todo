@@ -7,10 +7,13 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-flexbox-grid": "^2.1.2",    
+    "react-flexbox-grid": "^2.1.2",
     "react-moment": "^0.9.2",
+    "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "redux": "^4.0.1",
+    "storybook-router": "^0.3.4"
   },
   "scripts": {
     "start": "react-scripts start",

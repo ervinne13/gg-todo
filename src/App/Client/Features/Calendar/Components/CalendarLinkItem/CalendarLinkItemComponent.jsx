@@ -1,21 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
+import moment from 'moment';
+import { Link } from 'react-router-dom';
 import './style.css';
 
 import looseDate from 'App/Client/Common/PropTypes/looseDate';
 
 const CalendarLinkItemComponent = ({ taskMessage, taskHighlight, date, isActive }) => {
     const dateObj = new Date(date);
+    const dateString = moment(dateObj).format("YYYY-MM-DD");
 
     return (
-        <div className={`calendar-link-item ${isActive ? "-is-active" : ""}`}>
-            <div className="calendar-link-item-content">
-                <DayOfWeek date={dateObj} />
-                <TaskStatus highlight={taskHighlight}>{taskMessage}</TaskStatus>
+        <Link to={ `/tasks/${dateString}` }>
+            <div className={`calendar-link-item ${isActive ? "-is-active" : ""}`}>
+                <div className="calendar-link-item-content">
+                    <DayOfWeek date={dateObj} />
+                    <TaskStatus highlight={taskHighlight}>{taskMessage}</TaskStatus>
+                </div>
+                <DayOfMonth date={dateObj} />
             </div>
-            <DayOfMonth date={dateObj} />
-        </div>
+        </Link>
     );
 };
 
@@ -61,10 +66,9 @@ CalendarLinkItemComponent.defaultProps = {
 };
 
 CalendarLinkItemComponent.propTypes = {
-    taskMessage: PropTypes.node.isRequired,
+    taskMessage: PropTypes.node,
     taskHighlight: PropTypes.oneOf(['primary', 'info']),
     date: looseDate
 };
-
 
 export default CalendarLinkItemComponent;

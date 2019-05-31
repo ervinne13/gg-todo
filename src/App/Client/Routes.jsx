@@ -11,7 +11,7 @@ const Routes = () => (
         <Switch>
             <Route exact path="/" component={ LandingScene } />
             <Route exact path="/tasks/:taskId/edit" component={ TaskFormPerDateScene } />
-            <Route exact path="/tasks/create" component={ TaskFormPerDateScene } />            
+            <Route exact path="/tasks/:date/create" component={ TaskFormPerDateScene } />
             <Route exact path="/tasks/:date" component={ TaskListPerDateScene } />
             <Route path="*" component={ PageNotFound } />
         </Switch> 

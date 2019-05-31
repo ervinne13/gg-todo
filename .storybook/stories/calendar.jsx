@@ -2,8 +2,14 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import CalendarLinkItem from 'App/Client/Features/Calendar/Components/CalendarLinkItem';
 import VerticalDateNavigator from 'App/Client/Features/Calendar/Components/VerticalDateNavigator';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 storiesOf('Calendar Link Item', module)
+    .addDecorator(story => (
+        <BrowserRouter>
+            <Route path="*" component={ () => story() } />
+        </BrowserRouter>
+    ))
     .addDecorator(storyFn => <div style={{ width: '400px', borderTop: '1px #7E7E7E solid', borderBottom: '1px #7E7E7E solid'  }} children={storyFn()} />)
     .add('using date object & all tasks done', () => (
         <CalendarLinkItem
@@ -50,7 +56,12 @@ storiesOf('Calendar Link Item', module)
     ;
 
 storiesOf('Vertical Date Navigator', module)
-    .addDecorator(storyFn => <div style={{ width: '400px' }} children={storyFn()} />)
+    .addDecorator(story => (
+        <BrowserRouter>
+            <Route path="*" component={ () => story() } />
+        </BrowserRouter>
+    ))
+    .addDecorator(story => <div style={{ width: '400px' }} children={story()} />)    
     .add('no selected date', () => (
         <VerticalDateNavigator />
     ))
