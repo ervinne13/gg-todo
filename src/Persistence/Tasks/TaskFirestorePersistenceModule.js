@@ -31,10 +31,11 @@ export const loadTasksPerDate = date => {
     });
 };
 
-export const loadAllTasks = () => {
+export const loadAllTasks = (user) => {    
     const firestore = firebase.firestore();
     return new Promise((resolve, reject) => {
         firestore.collection(COLLECTION)
+            .where('author' , '==', user.email)
             .get()
             .catch(reject)
             .then(querySnapshot => {

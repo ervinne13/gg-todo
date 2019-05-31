@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Button from 'App/Client/Common/Components/Button';
 import FlatButton from 'App/Client/Common/Components/FlatButton';
-import GoogleLoginButton from 'App/Client/Features/Landing/Components/GoogleLoginButton';
+import GoogleLoginButton from 'App/Client/Features/Authentication/Components/GoogleLoginButton';
 
 storiesOf('Round Corner Button', module)
     .add('bordered with plain text', () => (

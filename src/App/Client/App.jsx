@@ -1,13 +1,12 @@
 import React from 'react';
-import Routes from './Routes';
+import Routes from './RoutesContainer';
 import ReduxWrapper from 'App/Client/Redux/ReduxWrapper';
-import { configureFirebase } from 'App/Config/firebase';
+import { applyFirebaseAuthAndConfigToComponent } from 'App/Config/firebase';
 
-configureFirebase();
-const App = () => (
+const App = (authProps) => (
     <ReduxWrapper>
-        <Routes />
+        <Routes { ...authProps } />
     </ReduxWrapper>
 );
 
-export default App;
+export default applyFirebaseAuthAndConfigToComponent(App);

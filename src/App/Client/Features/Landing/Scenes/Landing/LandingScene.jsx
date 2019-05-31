@@ -1,13 +1,13 @@
 import React from 'react';
 import { ReactComponent as Logo } from './bus-tie-orange.svg';
-import GoogleLoginButton from 'App/Client/Features/Landing/Components/GoogleLoginButton';
+import GoogleLoginButton from 'App/Client/Features/Authentication/Components/GoogleLoginButton';
 import './style.css';
 
-const LandingScene = () => (
+const LandingScene = ({ signInWithGoogle }) => (
     <div className="landing-scene">
         <Logo />
         <h1>To Do Tasks by Ground Gurus</h1>
-        <GoogleLoginButton />
+        <GoogleLoginButton onClick={ signInWithGoogle }/>
     </div>
 );
 

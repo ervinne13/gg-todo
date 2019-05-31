@@ -20,13 +20,14 @@ export const REFRESH_TASK_SUMMARIES = 'REFRESH_TASK_SUMMARIES';
 /** Action Creators */
 
 export const receiveTasks = (date) => {
-    return (dispatch) => {
-        loadTasksPerDateAndDispatch(date, dispatch);
+    return (dispatch, getState) => {
+        const user = getState().authenticationReducers.user;
+        loadTasksPerDateAndDispatch(date, user, dispatch);
     };
 };
 
-const loadTasksPerDateAndDispatch = (date, dispatch) => {
-    loadAllTasksInFirestore()
+const loadTasksPerDateAndDispatch = (date, user, dispatch) => {
+    loadAllTasksInFirestore(user)
             .then(tasks => dispatch(
                 {
                     type: RECEIVE_TASKS,
@@ -36,12 +37,19 @@ const loadTasksPerDateAndDispatch = (date, dispatch) => {
             ));
 };
 
-export const addTask = (taskValues) => {
-    const task = {
-        id: generateUUID(),
-        ...taskValues
-    }
-    return (dispatch) => {
+export const addTask = (taskValues) => {    
+    return (dispatch, getState) => {
+        const { user } = getState().authenticationReducers;
+        if (!user) {
+            throw new Error('Unathenticated');
+        }
+
+        const task = {
+            id: generateUUID(),
+            author: user.email,
+            ...taskValues
+        }
+
         storeTaskInFirestore(task)
             .then(dispatch({
                 type: ADD_TASK,
@@ -74,12 +82,13 @@ export const deleteTask = (task) => {
 export const toggleTaskStatus = (task) => {
     return (dispatch, getState) => {
         dispatch({ type: TOGGLE_TASK, task });
+        const user = getState().authenticationReducers.user;
         const { tasksBeingDisplayed } = getState().tasksReducers;
         const processedTask = tasksBeingDisplayed
             .find(taskBeingDisplayed => taskBeingDisplayed.id === task.id);
         
         updateTaskInFirestore(processedTask)
-            .then(() => loadTasksPerDateAndDispatch(processedTask.date, dispatch));
+            .then(() => loadTasksPerDateAndDispatch(processedTask.date, user, dispatch));
     };
 };
 
