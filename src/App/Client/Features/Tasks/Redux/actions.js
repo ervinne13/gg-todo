@@ -1,6 +1,13 @@
 
 import { generateUUID } from 'Domain/Identification/Services/IDGenerationService';
 
+import { 
+    storeTask as storeTaskInFirestore,
+    loadAllTasks as loadAllTasksInFirestore,
+    updateTask as updateTaskInFirestore,
+    deleteTask as deleteTaskInFirestore,
+ } from 'Persistence/Tasks/TaskFirestorePersistenceModule';
+
 /** Action Types */
 export const RECEIVE_TASKS = 'RECEIVE_TASKS';
 export const ADD_TASK = 'ADD_TASK';
@@ -13,10 +20,20 @@ export const REFRESH_TASK_SUMMARIES = 'REFRESH_TASK_SUMMARIES';
 /** Action Creators */
 
 export const receiveTasks = (date) => {
-    return {
-        type: RECEIVE_TASKS,
-        date
+    return (dispatch) => {
+        loadTasksPerDateAndDispatch(date, dispatch);
     };
+};
+
+const loadTasksPerDateAndDispatch = (date, dispatch) => {
+    loadAllTasksInFirestore()
+            .then(tasks => dispatch(
+                {
+                    type: RECEIVE_TASKS,
+                    date,
+                    tasks
+                }
+            ));
 };
 
 export const addTask = (taskValues) => {
@@ -24,9 +41,12 @@ export const addTask = (taskValues) => {
         id: generateUUID(),
         ...taskValues
     }
-    return {
-        type: ADD_TASK,
-        task
+    return (dispatch) => {
+        storeTaskInFirestore(task)
+            .then(dispatch({
+                type: ADD_TASK,
+                task
+            }));        
     };
 };
 
@@ -42,16 +62,24 @@ export const cancelTaskDeletion = () => {
 };
 
 export const deleteTask = (task) => {
-    return {
-        type: DELETE_TASK,
-        task
+    return (dispatch) => {
+        deleteTaskInFirestore(task)
+            .then(dispatch({
+                type: DELETE_TASK,
+                task
+            }));
     };
 };
 
 export const toggleTaskStatus = (task) => {
-    return {
-        type: TOGGLE_TASK,
-        task
+    return (dispatch, getState) => {
+        dispatch({ type: TOGGLE_TASK, task });
+        const { tasksBeingDisplayed } = getState().tasksReducers;
+        const processedTask = tasksBeingDisplayed
+            .find(taskBeingDisplayed => taskBeingDisplayed.id === task.id);
+        
+        updateTaskInFirestore(processedTask)
+            .then(() => loadTasksPerDateAndDispatch(processedTask.date, dispatch));
     };
 };
 

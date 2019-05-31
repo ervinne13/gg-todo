@@ -19,7 +19,7 @@ const initialState = {
 const tasksReducer = (state = initialState, action) => {
     switch(action.type) {
         case RECEIVE_TASKS:
-            return handleReceiveTasksActions(state, action);
+            return handleRefreshTaskSummaries(handleReceiveTasksActions(state, action), action);
         case ADD_TASK:
             return handleRefreshTaskSummaries(handleAddTaskAction(state, action), action);
         case TOGGLE_TASK:
@@ -39,8 +39,9 @@ const tasksReducer = (state = initialState, action) => {
 
 const handleReceiveTasksActions = (state, action) => {
     const currentDateSelected = action.date;
-    const tasksBeingDisplayed = state.tasks.filter(task => task.date === currentDateSelected);
-    return { ...state, tasksBeingDisplayed, currentDateSelected };
+    const tasks = action.tasks;
+    const tasksBeingDisplayed = tasks.filter(task => task.date === currentDateSelected);
+    return { ...state, tasks, tasksBeingDisplayed, currentDateSelected };
 };
 
 const handleAddTaskAction = (state, action) => {
@@ -103,8 +104,7 @@ const handleRefreshTaskSummaries = (state, action) => {
         }
     });
     
-    taskSummariesPerDate = Object.values(taskSummariesPerDate);
-    console.log(taskSummariesPerDate);
+    taskSummariesPerDate = Object.values(taskSummariesPerDate);    
     return { ...state, taskSummariesPerDate };
 };
 
