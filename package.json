@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
     "firebase": "^6.1.0",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
@@ -19,10 +21,16 @@
     "storybook-router": "^0.3.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "NODE_ENV=development concurrently --kill-others-on-fail \"npm run server:start\" \"npm run client:start\"",
+    "clean": "rimraf dist",
+    "client:start": "react-scripts start",
+    "client:build": "react-scripts build",
+    "client:test": "react-scripts test",
+    "client:eject": "react-scripts eject",
+    "server:start": "babel-node src/App/Server/bin/www",
+    "server:prod": "node dist/application/server/bin/www",
+    "server:build": "babel src --ignore src/application/client --out-dir dist",
+    "server:deploy": "NODE_ENV=production npm-run-all clean server:build client:build server:prod",
     "storybook": "start-storybook"
   },
   "eslintConfig": {
@@ -41,7 +49,10 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/register": "^7.4.4",
     "@storybook/addon-info": "^5.0.11",
-    "@storybook/react": "^5.0.11"
+    "@storybook/react": "^5.0.11",
+    "concurrently": "^4.1.0"
   }
 }
